@@ -1,0 +1,74 @@
+<form name="loginForm">
+    <div ng-repeat="item in structure" ng-switch="item.type">
+        <label name="Email" ng-switch-when="Email" class="item item-input">
+            <span class="input-label">{{ item.name }}</span>
+            <input type="email" ng-required="item.required" ng-model="data['Email']">
+            <span ng-show="loginForm.email.$error.pattern">{{ item.patternError }}</span>
+            <span ng-show="loginForm.email.$error.required" ng-if="item.required">{{ item.requiredError }}</span>
+        </label>
+        <label ng-switch-when="Name" class="item item-input">
+            <span class="input-label">{{ item.name }}</span>
+            <input name="name" type="text" ng-required="item.required" ng-model="data['Name']"
+                   ng-pattern="item.regularExpression">
+            <span ng-show="loginForm.name.$error.pattern">{{ item.patternError }}</span>
+            <span ng-show="loginForm.name.$error.required">{{ item.requiredError }}</span>
+
+        </label>
+        <label ng-switch-when="NickName" class="item item-input">
+            <span class="input-label">{{ item.name }}</span>
+            <input name="nickName" ng-required="item.required" type="text" ng-model="data['NickName']">
+            <span ng-show="loginForm.nickName.$error.pattern">{{ item.patternError }}</span>
+            <span ng-show="loginForm.nickName.$error.required"
+                  ng-if="item.required">{{ item.requiredError }}</span>
+        </label>
+        <label ng-switch-when="Sex" class="item item-input item-select">
+
+            <div class="input-label">
+                {{ item.name }}
+            </div>
+            <select ng-model="data['Sex']">
+                <option>男</option>
+                <option>女</option>
+                <option>其他</option>
+            </select>
+        </label>
+        <label ng-switch-when="Birthday" class="item item-input">
+            <span class="input-label">{{ item.name }}</span>
+            <input name="birthday" ng-required="item.required" type="date" ng-model="data['Birthday']">
+            <span ng-show="loginForm.birthday.$error.pattern">{{ item.patternError }}</span>
+            <span ng-show="loginForm.birthday.$error.required"
+                  ng-if="item.required">{{ item.requiredError }}</span>
+        </label>
+
+        <label ng-switch-when="Password" class="item item-input">
+            <span class="input-label">{{ item.name }}</span>
+            <input name="password" ng-required="item.required" type="password" ng-model="data['Password']">
+            <span ng-show="loginForm.password.$error.pattern">{{ item.patternError }}</span>
+            <span ng-show="loginForm.password.$error.required"
+                  ng-if="item.required">{{ item.requiredError }}</span>
+        </label>
+        <button ng-switch-when="Submit" class="item button button-block button-positive">
+            {{ item.name }}
+        </button>
+        <button ng-switch-when="Register" class="item button button-block button-positive"
+                ng-click="goRegisterClick()">
+            {{ item.name }}
+        </button>
+        <!--<label ng-switch-when="Submit" class="item item-input button-assertive">-->
+        <!--<span class="input-label">{{ item.name }}</span>-->
+        <!--<input name="submit" type="button" class="button-clear" ng-value="item.name" ng-click="submit(data)">-->
+        <!--</label>-->
+        <!--<label ng-switch-when="Register" class="item item-input">-->
+        <!--<input name="register" type="button" class="button-clear" ng-value="item.name" ng-click="register()">-->
+        <!--</label>-->
+    </div>
+    <!--<button type="submit" class="button button-positive button-block" ng-click="submit(data)">-->
+    <!--<h3 class="text-center">-->
+    <!--送出-->
+    <!--</h3>-->
+    <!--</button>-->
+</form>
+
+
+
+
