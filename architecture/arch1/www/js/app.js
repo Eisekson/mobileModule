@@ -5,12 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngMockE2E','starter.configs'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngMockE2E', 'starter.configs', 'ngCordova'])
 
-    .run(function ($ionicPlatform, $httpBackend) {
-        var Offline = true;
+    .run(function ($ionicPlatform, $httpBackend, Status) {
 
-        if (Offline == true) {
+        if (Status.isOffline() == true) {
             $httpBackend
                 .whenGET(/templates\/.*/)
                 .passThrough();
@@ -19,6 +18,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             //todo-yh 找disable的功能
             $httpBackend
                 .whenGET(/.*/)
+                .passThrough();
+            $httpBackend
                 .whenPOST(/.*/)
                 .passThrough();
         }

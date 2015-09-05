@@ -1,10 +1,20 @@
 angular.module('starter.controllers', [])
-    .controller('RegisterCtrl', function ($scope, Register) {
+    .controller('RegisterCtrl', function ($scope, Register, $ionicLoading) {
         $scope.data = {};
         $scope.structure = [
             {
-                'type': 'Name'
-                , 'name': '姓名'
+                'type': 'LastName'
+                , 'name': '姓'
+                , 'value': ''
+                , "regularExpression": /^\s*\w*\s*$/
+                , 'patternError': '格式不符合'
+                , 'requiredError': '必填'
+                , 'required': true
+            }
+
+            , {
+                'type': 'FirstName'
+                , 'name': '名'
                 , 'value': ''
                 , "regularExpression": /^\s*\w*\s*$/
                 , 'patternError': '格式不符合'
@@ -63,14 +73,25 @@ angular.module('starter.controllers', [])
 
         ];
 
-        console.log('g');
         $scope.submit = function (register) {
-            Register.registerClick(register);
+            $ionicLoading.show();
+            Register.registerClick(register
+                , function (message) {
+                    console.log(message);
+                    alert(JSON.stringify(message));
+                    $ionicLoading.hide();
+                }
+                , function (message) {
+
+                    console.log(message);
+                    alert(JSON.stringify(message));
+                    $ionicLoading.hide();
+                });
         };
 
     })
 
-    .controller('LoginCtrl', function ($scope, Login) {
+    .controller('LoginCtrl', function ($scope, Login, $ionicLoading) {
         $scope.data = {};
         $scope.structure = [
             {
@@ -114,12 +135,33 @@ angular.module('starter.controllers', [])
         $scope.goRegisterClick = function () {
             Login.registerClick();
         };
+        $scope.socialLoginClick = function (type) {
+            // show loading
+            $ionicLoading.show();
+
+            Login.loginWithSocialClick(type, function (message) {
+                console.log(message);
+                alert(JSON.stringify(message));
+                $ionicLoading.hide();
+            }, function (message) {
+                console.log(message);
+                alert(JSON.stringify(message));
+                $ionicLoading.hide();
+            });
+        };
         $scope.submit = function (data) {
-            Login.loginClick(data.email, data.password, function (data) {
-                    alert(data);
+            // show loading
+            $ionicLoading.show();
+
+            Login.loginClick(data.Email, data.password, function (message) {
+                    console.log(message);
+                    alert(message);
+                    $ionicLoading.hide();
                 }
-                , function (err) {
-                    alert(JSON.stringify(err));
+                , function (message) {
+                    console.log(message);
+                    alert(JSON.stringify(message));
+                    $ionicLoading.hide();
                 });
         }
     })
