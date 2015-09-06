@@ -1,0 +1,22 @@
+<div ng-repeat="item in socialLoginStructure" ng-switch="item.type">
+
+    <button class="button button-block icon-left ion-social-google"
+            style="background:#DD4B39; color:#ffffff; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+            ng-switch-when="Google"
+            ng-click="socialLoginClick(item.type)">
+        {{ item.name }}
+    </button>
+
+
+    <button class="button button-block icon-left ion-social-facebook"
+            style="background:#3B5998; color:#ffffff; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+            ng-switch-when="Facebook"
+            ng-click="socialLoginClick(item.type)">
+        {{ item.name }}
+    </button>
+
+</div>
+
+
+
+
