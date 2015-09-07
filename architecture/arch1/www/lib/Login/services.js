@@ -220,6 +220,8 @@ angular.module('starter.services', ['ngMockE2E'])
                             return;
                         }
                     }
+                    registerData['BirthdayFormat'] = new Date(registerData['Birthday']).toJSON().split('T')[0].toString();
+
                 } catch (error) {
                     errorFun("註冊失敗，請重新開啟App。");
                     return;

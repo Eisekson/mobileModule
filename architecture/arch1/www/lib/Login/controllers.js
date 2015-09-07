@@ -159,7 +159,7 @@ angular.module('starter.controllers', [])
             // show loading
             $ionicLoading.show();
 
-            Login.loginClick(data.Email, data.password, function (message) {
+            Login.loginClick(data.Email, data.Password, function (message) {
                     console.log(message);
                     alert(message);
                     $ionicLoading.hide();

@@ -50,7 +50,7 @@
         </label>
         <label ng-switch-when="Birthday" class="item item-input">
             <span class="input-label">{{ item.name }}</span>
-            <input name="birthday" ng-required="item.required" type="date" ng-model="data['Birthday']">
+            <input name="birthday" ng-required="item.required" type="date" ng-model="data['Birthday']" max="2006-12-31">
             <span ng-show="loginForm.birthday.$error.pattern">{{ item.patternError }}</span>
             <span ng-show="loginForm.birthday.$error.required"
                   ng-if="item.required">{{ item.requiredError }}</span>
